@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEACHEREDU | Quản lý lớp chủ nhiệm</title>
+<title>ClassMaster | Quản lý lớp chủ nhiệm</title>
 
 <style>
-:root {
+:root{
   --blue:#2563eb;
   --dark:#0f172a;
   --bg:#f1f5f9;
@@ -17,29 +16,55 @@
   --red:#dc2626;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#1e293b}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:#1e293b;
+}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 .hidden{display:none!important}
+
 .login-screen{
-  min-height:100vh;display:grid;place-items:center;padding:20px;
-  background:linear-gradient(135deg,#1d4ed8,#60a5fa)
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  background:linear-gradient(135deg,#1d4ed8,#60a5fa);
 }
 .login-card{
-  background:white;width:100%;max-width:440px;padding:30px;
-  border-radius:18px;box-shadow:0 15px 50px #0002
+  background:white;
+  width:100%;
+  max-width:440px;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 15px 50px #0002;
 }
 .login-card h1{color:var(--blue)}
 .field{margin:13px 0}
-label{display:block;font-size:14px;font-weight:bold;margin-bottom:7px}
+label{
+  display:block;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
 input,select,textarea{
-  width:100%;padding:11px;border:1px solid var(--border);
-  border-radius:8px;background:white;color:#1e293b
+  width:100%;
+  padding:11px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:white;
+  color:#1e293b;
 }
 textarea{min-height:75px}
 .btn{
-  background:var(--blue);color:white;border:0;border-radius:8px;
-  padding:10px 14px;font-weight:600
+  background:var(--blue);
+  color:white;
+  border:0;
+  border-radius:8px;
+  padding:10px 14px;
+  font-weight:600;
 }
 .btn:hover{opacity:.88}
 .btn.secondary{background:#e2e8f0;color:#334155}
@@ -47,80 +72,185 @@ textarea{min-height:75px}
 .btn.success{background:var(--green)}
 .btn.small{padding:6px 10px;font-size:12px}
 .full{width:100%}
+
 .layout{display:flex;min-height:100vh}
 .sidebar{
-  width:245px;background:var(--dark);color:white;
-  padding:20px 13px;flex-shrink:0
+  width:245px;
+  background:var(--dark);
+  color:white;
+  padding:20px 13px;
+  flex-shrink:0;
 }
-.brand{font-size:21px;font-weight:bold;padding:10px 12px 25px}
+.brand{
+  font-size:21px;
+  font-weight:bold;
+  padding:10px 12px 25px;
+}
 .nav-btn{
-  display:block;width:100%;text-align:left;padding:12px;
-  margin:4px 0;border:0;border-radius:8px;
-  color:#cbd5e1;background:transparent
+  display:block;
+  width:100%;
+  text-align:left;
+  padding:12px;
+  margin:4px 0;
+  border:0;
+  border-radius:8px;
+  color:#cbd5e1;
+  background:transparent;
 }
-.nav-btn:hover,.nav-btn.active{background:#334155;color:white}
+.nav-btn:hover,.nav-btn.active{
+  background:#334155;
+  color:white;
+}
 .main{flex:1;min-width:0}
 .topbar{
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:10px;background:white;padding:15px 22px;
-  border-bottom:1px solid var(--border)
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  background:white;
+  padding:15px 22px;
+  border-bottom:1px solid var(--border);
 }
 .topbar h2{margin:0;font-size:20px}
-.content{padding:23px;max-width:1450px;margin:auto}
+.content{
+  padding:23px;
+  max-width:1500px;
+  margin:auto;
+}
 .panel,.stat{
-  background:white;border:1px solid var(--border);
-  border-radius:13px;padding:19px;margin-bottom:18px
+  background:white;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:19px;
+  margin-bottom:18px;
 }
 .panel h3{margin-top:0}
 .cards{
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:13px;margin-bottom:20px
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:13px;
+  margin-bottom:20px;
 }
 .stat-label{font-size:13px;color:var(--muted)}
 .stat-value{font-size:25px;font-weight:bold;margin-top:9px}
-.toolbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
-.toolbar input,.toolbar select{width:auto;min-width:160px}
-.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.toolbar{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-bottom:14px;
+}
+.toolbar input,.toolbar select{
+  width:auto;
+  min-width:160px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
 .form-grid .field{margin:0}
 .wide{grid-column:1/-1}
 .table-wrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;min-width:650px}
-th,td{padding:11px;border-bottom:1px solid var(--border);text-align:left;font-size:13px}
+table{
+  border-collapse:collapse;
+  width:100%;
+  min-width:650px;
+}
+th,td{
+  padding:11px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+  font-size:13px;
+  vertical-align:middle;
+}
 th{background:#f8fafc;color:var(--muted)}
-.actions{display:flex;flex-wrap:wrap;gap:5px}
-.badge{padding:5px 9px;border-radius:20px;background:#dbeafe;color:#1d4ed8;font-size:12px}
+td input{
+  min-width:65px;
+  padding:7px;
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+}
+.badge{
+  padding:5px 9px;
+  border-radius:20px;
+  background:#dbeafe;
+  color:#1d4ed8;
+  font-size:12px;
+}
 .badge.admin{background:#fee2e2;color:#991b1b}
 .badge.teacher{background:#dcfce7;color:#166534}
+.badge.leader{background:#fef3c7;color:#92400e}
 .badge.user{background:#e2e8f0;color:#334155}
-.notice{padding:12px;background:#fffbeb;border:1px solid #fcd34d;border-radius:9px;color:#92400e;font-size:13px;line-height:1.5;margin-bottom:16px}
-.empty{text-align:center;color:var(--muted);padding:25px}
+.notice{
+  padding:12px;
+  background:#fffbeb;
+  border:1px solid #fcd34d;
+  border-radius:9px;
+  color:#92400e;
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:16px;
+}
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:25px;
+}
 .file-label{display:inline-block}
 .file-label input{display:none}
-hr{border:0;border-top:1px solid var(--border);margin:18px 0}
+hr{
+  border:0;
+  border-top:1px solid var(--border);
+  margin:18px 0;
+}
+.score-good{color:#15803d;font-weight:bold}
+.score-fair{color:#2563eb;font-weight:bold}
+.score-pass{color:#d97706;font-weight:bold}
+.score-low{color:#dc2626;font-weight:bold}
+.group-summary{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin:12px 0;
+}
+.group-card{
+  background:#f8fafc;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:13px;
+}
 @media(max-width:900px){
- .sidebar{width:190px}
- .cards{grid-template-columns:repeat(2,1fr)}
+  .sidebar{width:190px}
+  .cards,.group-summary{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:620px){
- .layout{display:block}
- .sidebar{width:100%;padding:10px}
- .brand{padding:8px}
- .nav-list{display:flex;overflow-x:auto}
- .nav-btn{white-space:nowrap;width:auto}
- .content{padding:12px}
- .topbar{padding:13px}
- .form-grid{grid-template-columns:1fr}
- .wide{grid-column:auto}
+  .layout{display:block}
+  .sidebar{width:100%;padding:10px}
+  .brand{padding:8px}
+  .nav-list{display:flex;overflow-x:auto}
+  .nav-btn{white-space:nowrap;width:auto}
+  .content{padding:12px}
+  .topbar{padding:13px}
+  .form-grid{grid-template-columns:1fr}
+  .wide{grid-column:auto}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ĐĂNG NHẬP / ĐĂNG KÝ -->
+<!-- =====================================
+     ĐĂNG NHẬP / ĐĂNG KÝ
+===================================== -->
+
 <section id="loginScreen" class="login-screen">
 <div class="login-card">
-  <h1>🎓 TEACHEREDU</h1>
+  <h1>🎓 ClassMaster</h1>
   <p>Hệ thống quản lý lớp chủ nhiệm</p>
 
   <div class="toolbar">
@@ -130,72 +260,119 @@ hr{border:0;border-top:1px solid var(--border);margin:18px 0}
 
   <form id="loginForm">
     <h3>Đăng nhập</h3>
+
     <div class="field">
       <label>Email</label>
       <input id="loginEmail" type="email" required>
     </div>
+
     <div class="field">
       <label>Mật khẩu</label>
       <input id="loginPassword" type="password" required>
     </div>
+
     <button class="btn full">Đăng nhập</button>
   </form>
 
   <form id="registerForm" class="hidden">
     <h3>Tạo tài khoản mới</h3>
+
     <div class="field">
       <label>Họ và tên</label>
       <input id="registerName" required>
     </div>
+
     <div class="field">
       <label>Email</label>
       <input id="registerEmail" type="email" required>
     </div>
+
     <div class="field">
       <label>Mật khẩu</label>
-      <input id="registerPassword" type="password" minlength="8" required>
+      <input id="registerPassword" type="password"
+             minlength="8" required>
     </div>
+
     <div class="field">
       <label>Xác nhận mật khẩu</label>
-      <input id="confirmPassword" type="password" minlength="8" required>
+      <input id="confirmPassword" type="password"
+             minlength="8" required>
     </div>
+
     <button class="btn full">Đăng ký</button>
   </form>
+
   <p id="authMessage" role="status"></p>
 </div>
 </section>
 
-<!-- GIAO DIỆN CHÍNH -->
+<!-- =====================================
+     GIAO DIỆN CHÍNH
+===================================== -->
+
 <div id="app" class="layout hidden">
 
 <aside class="sidebar">
   <div class="brand">🎓 ClassMaster</div>
+
   <div class="nav-list">
-    <button class="nav-btn active" data-page="dashboard">🏠 Tổng quan</button>
-    <button class="nav-btn" data-page="students">👨‍🎓 Học sinh</button>
-    <button class="nav-btn" data-page="grades">📊 Quản lý điểm</button>
-    <button class="nav-btn" data-page="leaves">📝 Giấy xin phép</button>
-    <button class="nav-btn" data-page="fund">💰 Quỹ lớp</button>
-    <button class="nav-btn" data-page="conduct">⭐ Hạnh kiểm</button>
-    <button class="nav-btn hidden" id="adminNav" data-page="admin">⚙️ Quản trị</button>
+    <button class="nav-btn active" data-page="dashboard">
+      🏠 Tổng quan
+    </button>
+
+    <button class="nav-btn" data-page="students">
+      👨‍🎓 Học sinh
+    </button>
+
+    <button class="nav-btn" data-page="grades">
+      📊 Quản lý điểm
+    </button>
+
+    <button class="nav-btn" data-page="leaves">
+      📝 Giấy xin phép
+    </button>
+
+    <button class="nav-btn" data-page="fund">
+      💰 Quỹ lớp
+    </button>
+
+    <button class="nav-btn" data-page="conduct">
+      ⭐ Hạnh kiểm
+    </button>
+
+    <button class="nav-btn" data-page="groups">
+      🏆 Thi đua 4 tổ
+    </button>
+
+    <button class="nav-btn hidden" id="adminNav"
+            data-page="admin">
+      ⚙️ Quản trị
+    </button>
   </div>
 </aside>
 
 <main class="main">
+
 <header class="topbar">
   <h2 id="pageTitle">Tổng quan</h2>
+
   <div class="actions">
     <span id="userRole" class="badge"></span>
-    <button class="btn secondary small" id="logoutBtn">Đăng xuất</button>
+    <button class="btn secondary small" id="logoutBtn">
+      Đăng xuất
+    </button>
   </div>
 </header>
 
 <div class="content">
   <div class="notice">
-    ClassMaster – Hệ thống quản lý lớp học. Bản hiện tại là phiên bản demo lưu dữ liệu trên trình duyệt.
+    ClassMaster – Hệ thống quản lý lớp học.
+    Bản hiện tại lưu dữ liệu trên trình duyệt.
   </div>
+
   <div id="pageContent"></div>
 </div>
+
 </main>
 </div>
 
@@ -203,9 +380,11 @@ hr{border:0;border-top:1px solid var(--border);margin:18px 0}
 "use strict";
 
 // ========================================
-// 1. CẤU HÌNH TÀI KHOẢN VÀ PHÂN QUYỀN
+// 1. CẤU HÌNH VÀ DỮ LIỆU
 // ========================================
 
+// Email ADMIN cố định.
+// Giữ lại tài khoản ADMIN cũ để không làm mất quyền đã có.
 const ADMIN_EMAILS = [
   "anhduydl2012@gmail.com",
   "vietnammuonnam234567900@gmail.com"
@@ -224,56 +403,111 @@ const defaultData = {
   leaves: [],
   funds: [],
   conduct: [],
-  teachers: []
+  teachers: [],
+  groupLeaders: {},
+  groupColumns: {
+    1: [],
+    2: [],
+    3: [],
+    4: []
+  },
+  weeklyRecords: []
 };
 
 function uid(){
-  return Date.now().toString(36) + Math.random().toString(36).slice(2,8);
+  return Date.now().toString(36) +
+    Math.random().toString(36).slice(2,8);
 }
 
 function loadUsers(){
   try{
-    return JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+    return JSON.parse(
+      localStorage.getItem(USERS_KEY) || "[]"
+    );
   }catch{
     return [];
   }
 }
 
 function saveUsers(users){
-  localStorage.setItem(USERS_KEY,JSON.stringify(users));
+  localStorage.setItem(
+    USERS_KEY,
+    JSON.stringify(users)
+  );
 }
 
 function loadData(){
   try{
-    return {...defaultData,...JSON.parse(localStorage.getItem(DATA_KEY) || "{}")};
+    const old = JSON.parse(
+      localStorage.getItem(DATA_KEY) || "{}"
+    );
+
+    return {
+      ...defaultData,
+      ...old,
+
+      groupLeaders: old.groupLeaders || {},
+
+      groupColumns: {
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+        ...(old.groupColumns || {})
+      },
+
+      weeklyRecords: old.weeklyRecords || []
+    };
+
   }catch{
-    return structuredClone(defaultData);
+    return JSON.parse(JSON.stringify(defaultData));
   }
 }
 
 let db = loadData();
 
 function saveData(){
-  localStorage.setItem(DATA_KEY,JSON.stringify(db));
+  localStorage.setItem(
+    DATA_KEY,
+    JSON.stringify(db)
+  );
 }
 
-// ADMIN luôn được xác định bằng danh sách email cố định.
+// ========================================
+// 2. PHÂN QUYỀN
+// ========================================
+
 function isAdmin(){
-  return !!currentUser && ADMIN_EMAILS.includes(currentUser.email);
+  return !!currentUser &&
+    ADMIN_EMAILS.includes(currentUser.email);
 }
 
-// GVCN gồm tài khoản được ADMIN phân quyền.
 function isTeacher(){
   return !!currentUser &&
-    (isAdmin() || db.teachers.includes(currentUser.email));
+    (isAdmin() ||
+    db.teachers.includes(currentUser.email));
 }
 
-function requireTeacher(){
-  if(!isTeacher()){
-    alert("Bạn không có quyền GVCN.");
-    return false;
+function leaderGroup(){
+  if(!currentUser) return null;
+
+  for(let group=1;group<=4;group++){
+    if(db.groupLeaders[group] === currentUser.email){
+      return group;
+    }
   }
-  return true;
+
+  return null;
+}
+
+function isGroupLeader(){
+  return leaderGroup() !== null;
+}
+
+function canManageGroup(group){
+  return isAdmin() ||
+    isTeacher() ||
+    Number(leaderGroup()) === Number(group);
 }
 
 function requireAdmin(){
@@ -281,35 +515,72 @@ function requireAdmin(){
     alert("Chỉ ADMIN mới có quyền thực hiện chức năng này.");
     return false;
   }
+
+  return true;
+}
+
+function requireTeacher(){
+  if(!isTeacher()){
+    alert("Bạn không có quyền GVCN.");
+    return false;
+  }
+
+  return true;
+}
+
+function requireGroupManager(group){
+  if(!canManageGroup(group)){
+    alert("Bạn không có quyền quản lý tổ này.");
+    return false;
+  }
+
   return true;
 }
 
 function roleName(){
-  return isAdmin() ? "ADMIN" : isTeacher() ? "GVCN" : "USER";
+  if(isAdmin()) return "ADMIN";
+  if(isTeacher()) return "GVCN";
+
+  const group = leaderGroup();
+
+  if(group){
+    return "TỔ TRƯỞNG TỔ " + group;
+  }
+
+  return "USER";
 }
 
 function escapeHTML(value){
   return String(value ?? "").replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
   }[c]));
 }
 
 function money(value){
-  return Number(value || 0).toLocaleString("vi-VN")+" đ";
+  return Number(value || 0).toLocaleString("vi-VN") + " đ";
 }
 
 function studentName(id){
-  return db.students.find(s=>s.id===id)?.name || "Học sinh đã xóa";
+  return db.students.find(s=>s.id===id)?.name ||
+    "Học sinh đã xóa";
 }
 
 // ========================================
-// 2. ĐĂNG NHẬP / ĐĂNG KÝ / ĐĂNG XUẤT
+// 3. ĐĂNG NHẬP / ĐĂNG KÝ
 // ========================================
 
+const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm");
+
 function authMessage(message,success=false){
-  const el=document.getElementById("authMessage");
-  el.textContent=message;
-  el.style.color=success?"#15803d":"#dc2626";
+  const el = document.getElementById("authMessage");
+
+  el.textContent = message;
+  el.style.color = success ? "#15803d" : "#dc2626";
 }
 
 document.getElementById("showLogin").onclick=()=>{
@@ -324,27 +595,35 @@ document.getElementById("showRegister").onclick=()=>{
   authMessage("");
 };
 
-const loginForm=document.getElementById("loginForm");
-const registerForm=document.getElementById("registerForm");
-
 registerForm.addEventListener("submit",e=>{
   e.preventDefault();
 
-  const name=document.getElementById("registerName").value.trim();
-  const email=document.getElementById("registerEmail").value.trim().toLowerCase();
-  const password=document.getElementById("registerPassword").value;
-  const confirm=document.getElementById("confirmPassword").value;
+  const name = document.getElementById("registerName")
+    .value.trim();
 
-  if(password.length<8)return authMessage("Mật khẩu phải có ít nhất 8 ký tự.");
-  if(password!==confirm)return authMessage("Mật khẩu xác nhận không khớp.");
+  const email = document.getElementById("registerEmail")
+    .value.trim().toLowerCase();
 
-  const users=loadUsers();
+  const password = document.getElementById("registerPassword")
+    .value;
 
-  if(users.some(u=>u.email===email))
+  const confirmPassword = document.getElementById("confirmPassword")
+    .value;
+
+  if(password.length < 8){
+    return authMessage("Mật khẩu phải có ít nhất 8 ký tự.");
+  }
+
+  if(password !== confirmPassword){
+    return authMessage("Mật khẩu xác nhận không khớp.");
+  }
+
+  const users = loadUsers();
+
+  if(users.some(u=>u.email===email)){
     return authMessage("Email này đã tồn tại.");
+  }
 
-  // Chỉ ADMIN mới được phân quyền GVCN.
-  // Tài khoản đăng ký mới mặc định là USER.
   users.push({
     id:uid(),
     name,
@@ -358,7 +637,8 @@ registerForm.addEventListener("submit",e=>{
 
   loginForm.classList.remove("hidden");
   registerForm.classList.add("hidden");
-  document.getElementById("loginEmail").value=email;
+
+  document.getElementById("loginEmail").value = email;
 
   authMessage("Đăng ký thành công! Hãy đăng nhập.",true);
 });
@@ -366,163 +646,271 @@ registerForm.addEventListener("submit",e=>{
 loginForm.addEventListener("submit",e=>{
   e.preventDefault();
 
-  const email=document.getElementById("loginEmail").value.trim().toLowerCase();
-  const password=document.getElementById("loginPassword").value;
+  const email = document.getElementById("loginEmail")
+    .value.trim().toLowerCase();
 
-  const user=loadUsers().find(u=>u.email===email && u.password===password);
+  const password = document.getElementById("loginPassword")
+    .value;
 
-  if(!user)return authMessage("Email hoặc mật khẩu không chính xác.");
+  const user = loadUsers().find(u=>
+    u.email===email && u.password===password
+  );
 
-  currentUser={
+  if(!user){
+    return authMessage("Email hoặc mật khẩu không chính xác.");
+  }
+
+  currentUser = {
     id:user.id,
     name:user.name,
     email:user.email
   };
 
-  document.getElementById("loginScreen").classList.add("hidden");
-  document.getElementById("app").classList.remove("hidden");
+  document.getElementById("loginScreen")
+    .classList.add("hidden");
 
-  document.getElementById("userRole").textContent=roleName();
-  document.getElementById("userRole").className=
-    "badge "+(isAdmin()?"admin":isTeacher()?"teacher":"user");
+  document.getElementById("app")
+    .classList.remove("hidden");
 
-  document.getElementById("adminNav").classList.toggle("hidden",!isAdmin());
+  updateRoleDisplay();
 
-  currentPage="dashboard";
-  document.querySelectorAll(".nav-btn").forEach(b=>
-    b.classList.toggle("active",b.dataset.page==="dashboard")
-  );
+  currentPage = "dashboard";
+
+  document.querySelectorAll(".nav-btn").forEach(b=>{
+    b.classList.toggle(
+      "active",
+      b.dataset.page==="dashboard"
+    );
+  });
 
   loginForm.reset();
   render();
 });
 
+function updateRoleDisplay(){
+  const role = document.getElementById("userRole");
+
+  role.textContent = roleName();
+
+  role.className =
+    "badge " +
+    (isAdmin() ? "admin" :
+    isTeacher() ? "teacher" :
+    isGroupLeader() ? "leader" : "user");
+
+  document.getElementById("adminNav")
+    .classList.toggle("hidden",!isAdmin());
+}
+
 document.getElementById("logoutBtn").onclick=()=>{
-  currentUser=null;
-  editingStudentId=null;
+  currentUser = null;
+  editingStudentId = null;
 
   document.getElementById("app").classList.add("hidden");
   document.getElementById("loginScreen").classList.remove("hidden");
 
   loginForm.classList.remove("hidden");
   registerForm.classList.add("hidden");
-  loginForm.reset();
 
+  loginForm.reset();
   authMessage("");
 };
 
 // ========================================
-// 3. ĐIỀU HƯỚNG
+// 4. ĐIỀU HƯỚNG
 // ========================================
 
 document.querySelectorAll(".nav-btn").forEach(button=>{
   button.addEventListener("click",()=>{
-    currentPage=button.dataset.page;
 
-    if(currentPage==="admin" && !isAdmin()){
+    const page = button.dataset.page;
+
+    if(page==="admin" && !isAdmin()){
       alert("Chỉ ADMIN được truy cập.");
       return;
     }
 
-    document.querySelectorAll(".nav-btn").forEach(b=>
-      b.classList.toggle("active",b===button)
-    );
+    if(
+      ["students","grades","leaves","fund","conduct"].includes(page) &&
+      !isTeacher() &&
+      page!=="students"
+    ){
+      alert("Chức năng này chỉ dành cho GVCN và ADMIN.");
+      return;
+    }
+
+    currentPage = page;
+
+    document.querySelectorAll(".nav-btn").forEach(b=>{
+      b.classList.toggle("active",b===button);
+    });
 
     render();
   });
 });
 
 function render(){
-  const titles={
+
+  const titles = {
     dashboard:"Tổng quan",
     students:"Quản lý học sinh",
     grades:"Quản lý điểm",
     leaves:"Giấy xin phép",
     fund:"Quỹ lớp",
     conduct:"Hạnh kiểm",
+    groups:"Thi đua 4 tổ",
     admin:"Quản trị hệ thống"
   };
 
-  document.getElementById("pageTitle").textContent=titles[currentPage];
-
-  const content=document.getElementById("pageContent");
-
-  const pages={
+  const pages = {
     dashboard:dashboardPage,
     students:studentsPage,
     grades:gradesPage,
     leaves:leavesPage,
     fund:fundPage,
     conduct:conductPage,
+    groups:groupsPage,
     admin:adminPage
   };
 
-  content.innerHTML=pages[currentPage]();
+  if(!pages[currentPage]){
+    currentPage = "dashboard";
+  }
+
+  document.getElementById("pageTitle").textContent =
+    titles[currentPage];
+
+  document.getElementById("pageContent").innerHTML =
+    pages[currentPage]();
+
+  updateRoleDisplay();
+
   bindPageEvents();
+
+  if(currentPage==="groups"){
+    renderGroupData();
+    bindGroupDataEvents();
+  }
 }
 
 // ========================================
-// 4. TỔNG QUAN
+// 5. TỔNG QUAN
 // ========================================
 
 function dashboardPage(){
-  const balance=db.funds.reduce((sum,f)=>
-    sum+(f.type==="Thu"?Number(f.amount):-Number(f.amount)),0);
 
-  const pending=db.leaves.filter(l=>l.status==="Chờ duyệt").length;
+  const balance = db.funds.reduce((sum,f)=>
+    sum + (
+      f.type==="Thu"
+      ? Number(f.amount)
+      : -Number(f.amount)
+    ),0);
+
+  const pending = db.leaves.filter(l=>
+    l.status==="Chờ duyệt"
+  ).length;
+
+  const groupCount = [1,2,3,4].map(g=>
+    getGroupStudents(g).length
+  );
 
   return `
   <div class="cards">
-    <div class="stat"><div class="stat-label">Tổng học sinh</div><div class="stat-value">${db.students.length}</div></div>
-    <div class="stat"><div class="stat-label">Bản ghi điểm</div><div class="stat-value">${db.grades.length}</div></div>
-    <div class="stat"><div class="stat-label">Đơn chờ duyệt</div><div class="stat-value">${pending}</div></div>
-    <div class="stat"><div class="stat-label">Số dư quỹ</div><div class="stat-value">${money(balance)}</div></div>
+
+    <div class="stat">
+      <div class="stat-label">Tổng học sinh</div>
+      <div class="stat-value">${db.students.length}</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">Bản ghi điểm</div>
+      <div class="stat-value">${db.grades.length}</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">Đơn chờ duyệt</div>
+      <div class="stat-value">${pending}</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">Số dư quỹ</div>
+      <div class="stat-value">${money(balance)}</div>
+    </div>
+
   </div>
 
   <div class="panel">
     <h3>Xin chào, ${escapeHTML(currentUser.name)}!</h3>
     <p>Email: ${escapeHTML(currentUser.email)}</p>
     <p>Vai trò: <strong>${roleName()}</strong></p>
-    <p>Chào mừng bạn đến với hệ thống ClassMaster.</p>
+    <p>Chào mừng bạn đến với ClassMaster.</p>
+  </div>
+
+  <div class="panel">
+    <h3>👥 Sĩ số 4 tổ</h3>
+    <div class="group-summary">
+      ${groupCount.map((n,i)=>`
+        <div class="group-card">
+          <strong>Tổ ${i+1}</strong>
+          <div class="stat-value">${n}</div>
+          <small>học sinh</small>
+        </div>
+      `).join("")}
+    </div>
   </div>`;
 }
 
 // ========================================
-// 5. QUẢN LÝ HỌC SINH
+// 6. QUẢN LÝ HỌC SINH
 // ========================================
 
 function studentsPage(){
-  const rows=db.students.map((s,i)=>`
-  <tr>
-    <td>${i+1}</td>
-    <td>${escapeHTML(s.code)}</td>
-    <td>${escapeHTML(s.name)}</td>
-    <td>${escapeHTML(s.gender)}</td>
-    <td>${escapeHTML(s.dob)}</td>
-    <td>${escapeHTML(s.phone)}</td>
-    <td>
-      ${isTeacher()?`
-      <div class="actions">
-        <button class="btn small secondary" data-edit-student="${s.id}">Sửa</button>
-        <button class="btn small danger" data-delete-student="${s.id}">Xóa</button>
-      </div>`:"—"}
-    </td>
-  </tr>`).join("");
+
+  const rows = db.students.map((s,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td>${escapeHTML(s.code)}</td>
+      <td>${escapeHTML(s.name)}</td>
+      <td>${escapeHTML(s.gender)}</td>
+      <td>${escapeHTML(s.dob)}</td>
+      <td>${escapeHTML(s.phone)}</td>
+      <td>Tổ ${Number(s.group)||1}</td>
+      <td>
+        ${isTeacher()?`
+          <div class="actions">
+            <button class="btn small secondary"
+                    data-edit-student="${s.id}">
+              Sửa
+            </button>
+            <button class="btn small danger"
+                    data-delete-student="${s.id}">
+              Xóa
+            </button>
+          </div>
+        `:"—"}
+      </td>
+    </tr>
+  `).join("");
 
   return `
   ${isTeacher()?`
   <div class="panel">
-    <h3>${editingStudentId?"Sửa thông tin học sinh":"Thêm học sinh thủ công"}</h3>
+    <h3>${editingStudentId
+      ? "Sửa thông tin học sinh"
+      : "Thêm học sinh"}</h3>
 
     <form id="studentForm" class="form-grid">
+
       <div class="field">
         <label>Mã học sinh</label>
         <input name="code" required>
       </div>
+
       <div class="field">
         <label>Họ và tên</label>
         <input name="name" required>
       </div>
+
       <div class="field">
         <label>Giới tính</label>
         <select name="gender">
@@ -531,48 +919,95 @@ function studentsPage(){
           <option>Khác</option>
         </select>
       </div>
+
       <div class="field">
         <label>Ngày sinh</label>
         <input name="dob" type="date">
       </div>
+
       <div class="field">
         <label>Số điện thoại phụ huynh</label>
         <input name="phone">
       </div>
+
+      <div class="field">
+        <label>Thuộc tổ</label>
+        <select name="group">
+          <option value="1">Tổ 1</option>
+          <option value="2">Tổ 2</option>
+          <option value="3">Tổ 3</option>
+          <option value="4">Tổ 4</option>
+        </select>
+      </div>
+
       <div class="field wide">
         <button class="btn">Lưu học sinh</button>
-        <button type="button" class="btn secondary" id="cancelEdit">Hủy</button>
+        <button type="button" class="btn secondary"
+                id="cancelEdit">
+          Hủy
+        </button>
       </div>
+
     </form>
 
     <hr>
+
     <h3>Nhập danh sách từ file CSV</h3>
-    <p>File cần có các cột theo thứ tự: MaHS, HoTen, GioiTinh, NgaySinh, SDT.</p>
+    <p>
+      Các cột: MaHS, HoTen, GioiTinh, NgaySinh, SDT.
+      Học sinh nhập từ CSV mặc định thuộc Tổ 1.
+    </p>
+
     <div class="toolbar">
       <label class="file-label">
         <span class="btn success">📁 Chọn file CSV</span>
-        <input type="file" id="studentFile" accept=".csv,.txt">
+        <input type="file" id="studentFile"
+               accept=".csv,.txt">
       </label>
-      <button class="btn secondary" id="downloadTemplate">Tải file mẫu CSV</button>
-      <button class="btn secondary" id="exportStudents">⬇ Xuất danh sách học sinh</button>
+
+      <button class="btn secondary" id="downloadTemplate">
+        Tải file mẫu CSV
+      </button>
+
+      <button class="btn secondary" id="exportStudents">
+        ⬇ Xuất danh sách
+      </button>
     </div>
-    <p id="importMessage"></p>
+
   </div>
   `:""}
 
   <div class="panel">
     <h3>Danh sách học sinh (${db.students.length})</h3>
+
     <div class="toolbar">
-      <input id="studentSearch" placeholder="Tìm tên hoặc mã học sinh...">
-      ${isTeacher()?`<button class="btn secondary" id="exportStudents2">⬇ Xuất CSV</button>`:""}
+      <input id="studentSearch"
+             placeholder="Tìm tên hoặc mã học sinh...">
     </div>
+
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>#</th><th>Mã HS</th><th>Họ tên</th><th>Giới tính</th><th>Ngày sinh</th><th>Liên hệ</th><th>Thao tác</th></tr>
+          <tr>
+            <th>#</th>
+            <th>Mã HS</th>
+            <th>Họ tên</th>
+            <th>Giới tính</th>
+            <th>Ngày sinh</th>
+            <th>Liên hệ</th>
+            <th>Tổ</th>
+            <th>Thao tác</th>
+          </tr>
         </thead>
+
         <tbody id="studentRows">
-          ${rows||`<tr><td colspan="7" class="empty">Chưa có học sinh</td></tr>`}
+          ${rows || `
+            <tr>
+              <td colspan="8" class="empty">
+                Chưa có học sinh
+              </td>
+            </tr>
+          `}
         </tbody>
       </table>
     </div>
@@ -580,71 +1015,112 @@ function studentsPage(){
 }
 
 // ========================================
-// 6. XỬ LÝ CSV
+// 7. XỬ LÝ CSV
 // ========================================
 
 function parseCSV(text){
-  const lines=[];
-  let row=[],value="",quoted=false;
+
+  const lines = [];
+  let row = [];
+  let value = "";
+  let quoted = false;
 
   for(let i=0;i<text.length;i++){
-    const c=text[i];
+
+    const c = text[i];
 
     if(c==='"'){
+
       if(quoted && text[i+1]==='"'){
-        value+='"';
+        value += '"';
         i++;
       }else{
-        quoted=!quoted;
+        quoted = !quoted;
       }
+
     }else if((c==="," || c===";") && !quoted){
+
       row.push(value.trim());
-      value="";
+      value = "";
+
     }else if((c==="\n" || c==="\r") && !quoted){
-      if(c==="\r" && text[i+1]==="\n")i++;
+
+      if(c==="\r" && text[i+1]==="\n") i++;
+
       row.push(value.trim());
-      if(row.some(x=>x!==""))lines.push(row);
-      row=[];
-      value="";
+
+      if(row.some(x=>x!=="")){
+        lines.push(row);
+      }
+
+      row = [];
+      value = "";
+
     }else{
-      value+=c;
+      value += c;
     }
   }
 
   row.push(value.trim());
-  if(row.some(x=>x!==""))lines.push(row);
+
+  if(row.some(x=>x!=="")){
+    lines.push(row);
+  }
+
   return lines;
 }
 
 function importStudents(file){
-  const reader=new FileReader();
+
+  const reader = new FileReader();
 
   reader.onload=()=>{
+
     try{
-      let lines=parseCSV(String(reader.result).replace(/^\uFEFF/,""));
 
-      if(lines.length<2)throw Error("File không có dữ liệu.");
+      const lines = parseCSV(
+        String(reader.result).replace(/^\uFEFF/,"")
+      );
 
-      const header=lines[0].map(x=>x.trim().toLowerCase());
-      const expected=["mahs","hoten","gioitinh","ngaysinh","sdt"];
+      if(lines.length<2){
+        throw Error("File không có dữ liệu.");
+      }
 
-      const indexes=expected.map(key=>header.indexOf(key));
+      const header = lines[0].map(x=>
+        x.trim().toLowerCase()
+      );
+
+      const expected = [
+        "mahs","hoten","gioitinh","ngaysinh","sdt"
+      ];
+
+      const indexes = expected.map(key=>
+        header.indexOf(key)
+      );
 
       if(indexes.some(i=>i<0)){
         throw Error("Tiêu đề cột không đúng. Hãy tải file mẫu.");
       }
 
-      let added=0,skipped=0;
+      let added = 0;
+      let skipped = 0;
 
       for(const row of lines.slice(1)){
-        const get=key=>row[indexes[expected.indexOf(key)]]||"";
 
-        const code=get("mahs").trim();
-        const name=get("hoten").trim();
+        const get = key=>
+          row[indexes[expected.indexOf(key)]] || "";
 
-        if(!code||!name){skipped++;continue;}
+        const code = get("mahs").trim();
+        const name = get("hoten").trim();
 
-        if(db.students.some(s=>s.code.toLowerCase()===code.toLowerCase())){
+        if(!code || !name){
+          skipped++;
+          continue;
+        }
+
+        if(db.students.some(s=>
+          s.code.toLowerCase()===code.toLowerCase()
+        )){
           skipped++;
           continue;
         }
@@ -655,14 +1131,19 @@ function importStudents(file){
           name,
           gender:get("gioitinh"),
           dob:get("ngaysinh"),
-          phone:get("sdt")
+          phone:get("sdt"),
+          group:1
         });
 
         added++;
       }
 
       saveData();
-      alert("Nhập thành công "+added+" học sinh. Bỏ qua "+skipped+" dòng.");
+      alert(
+        "Nhập thành công "+added+
+        " học sinh. Bỏ qua "+skipped+" dòng."
+      );
+
       render();
 
     }catch(error){
@@ -671,487 +1152,1794 @@ function importStudents(file){
   };
 
   reader.onerror=()=>alert("Không thể đọc file.");
+
   reader.readAsText(file,"UTF-8");
 }
 
 function downloadCSV(filename,content){
-  const blob=new Blob(["\uFEFF"+content],{type:"text/csv;charset=utf-8"});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  a.href=url;
-  a.download=filename;
+
+  const blob = new Blob(
+    ["\uFEFF"+content],
+    {type:"text/csv;charset=utf-8"}
+  );
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download = filename;
   a.click();
+
   URL.revokeObjectURL(url);
 }
 
 function exportStudents(){
-  const rows=[
-    ["MaHS","HoTen","GioiTinh","NgaySinh","SDT"],
-    ...db.students.map(s=>[s.code,s.name,s.gender,s.dob,s.phone])
+
+  const rows = [
+    ["MaHS","HoTen","GioiTinh","NgaySinh","SDT","To"],
+
+    ...db.students.map(s=>[
+      s.code,
+      s.name,
+      s.gender,
+      s.dob,
+      s.phone,
+      s.group || 1
+    ])
   ];
 
-  const csv=rows.map(row=>row.map(v=>
-    '"'+String(v??"").replace(/"/g,'""')+'"'
-  ).join(",")).join("\r\n");
+  const csv = rows.map(row=>
+    row.map(v=>
+      '"'+String(v??"").replace(/"/g,'""')+'"'
+    ).join(",")
+  ).join("\r\n");
 
   downloadCSV("Danh_sach_hoc_sinh.csv",csv);
 }
 
 // ========================================
-// 7. QUẢN LÝ ĐIỂM
+// 8. QUẢN LÝ ĐIỂM
 // ========================================
 
 function gradesPage(){
-  const rows=db.grades.map((g,i)=>`
-  <tr>
-    <td>${i+1}</td>
-    <td>${escapeHTML(studentName(g.studentId))}</td>
-    <td>${escapeHTML(g.subject)}</td>
-    <td>${escapeHTML(g.type)}</td>
-    <td>${escapeHTML(g.score)}</td>
-    <td>${escapeHTML(g.date)}</td>
-    <td>${isTeacher()?`<button class="btn small danger" data-delete-grade="${g.id}">Xóa</button>`:"—"}</td>
-  </tr>`).join("");
+
+  const rows = db.grades.map((g,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td>${escapeHTML(studentName(g.studentId))}</td>
+      <td>${escapeHTML(g.subject)}</td>
+      <td>${escapeHTML(g.type)}</td>
+      <td>${escapeHTML(g.score)}</td>
+      <td>${escapeHTML(g.date)}</td>
+      <td>
+        ${isTeacher()?`
+          <button class="btn small danger"
+                  data-delete-grade="${g.id}">
+            Xóa
+          </button>
+        `:"—"}
+      </td>
+    </tr>
+  `).join("");
 
   return `
   ${isTeacher()?`
   <div class="panel">
     <h3>Nhập điểm học sinh</h3>
+
     ${db.students.length?`
     <form id="gradeForm" class="form-grid">
-      <div class="field"><label>Học sinh</label>
-        <select name="studentId">${db.students.map(s=>`<option value="${s.id}">${escapeHTML(s.name)}</option>`).join("")}</select>
-      </div>
-      <div class="field"><label>Môn học</label><input name="subject" required></div>
-      <div class="field"><label>Loại điểm</label>
-        <select name="type">
-          <option>Miệng</option><option>15 phút</option><option>1 tiết</option><option>Giữa kỳ</option><option>Cuối kỳ</option>
+
+      <div class="field">
+        <label>Học sinh</label>
+        <select name="studentId">
+          ${db.students.map(s=>`
+            <option value="${s.id}">
+              ${escapeHTML(s.name)}
+            </option>
+          `).join("")}
         </select>
       </div>
-      <div class="field"><label>Điểm</label><input name="score" type="number" min="0" max="10" step="0.1" required></div>
-      <div class="field"><label>Ngày nhập</label><input name="date" type="date" value="${new Date().toISOString().slice(0,10)}"></div>
-      <div class="field wide"><button class="btn">Lưu điểm</button></div>
-    </form>`:`<p>Chưa có học sinh.</p>`}
-  </div>`:""}
 
-  <div class="panel"><h3>Bảng điểm</h3>
-  <div class="table-wrap"><table>
-    <thead><tr><th>#</th><th>Học sinh</th><th>Môn</th><th>Loại</th><th>Điểm</th><th>Ngày</th><th>Thao tác</th></tr></thead>
-    <tbody>${rows||`<tr><td colspan="7" class="empty">Chưa có điểm</td></tr>`}</tbody>
-  </table></div></div>`;
+      <div class="field">
+        <label>Môn học</label>
+        <input name="subject" required>
+      </div>
+
+      <div class="field">
+        <label>Loại điểm</label>
+        <select name="type">
+          <option>Miệng</option>
+          <option>15 phút</option>
+          <option>1 tiết</option>
+          <option>Giữa kỳ</option>
+          <option>Cuối kỳ</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Điểm</label>
+        <input name="score" type="number"
+               min="0" max="10" step="0.1" required>
+      </div>
+
+      <div class="field">
+        <label>Ngày nhập</label>
+        <input name="date" type="date"
+               value="${new Date().toISOString().slice(0,10)}">
+      </div>
+
+      <div class="field wide">
+        <button class="btn">Lưu điểm</button>
+      </div>
+
+    </form>
+    `:`<p>Chưa có học sinh.</p>`}
+  </div>
+  `:""}
+
+  <div class="panel">
+    <h3>Bảng điểm</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Học sinh</th>
+            <th>Môn</th>
+            <th>Loại</th>
+            <th>Điểm</th>
+            <th>Ngày</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows || `
+            <tr>
+              <td colspan="7" class="empty">Chưa có điểm</td>
+            </tr>
+          `}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
 }
 
 // ========================================
-// 8. GIẤY XIN PHÉP
+// 9. GIẤY XIN PHÉP
 // ========================================
 
 function leavesPage(){
-  const rows=db.leaves.map((l,i)=>`
-  <tr>
-    <td>${i+1}</td>
-    <td>${escapeHTML(studentName(l.studentId))}</td>
-    <td>${escapeHTML(l.date)}</td>
-    <td>${escapeHTML(l.reason)}</td>
-    <td>${escapeHTML(l.status)}</td>
-    <td>${isTeacher()?`
-      <div class="actions">
-        <button class="btn small success" data-leave="${l.id}|Đã duyệt">Duyệt</button>
-        <button class="btn small danger" data-leave="${l.id}|Từ chối">Từ chối</button>
-        <button class="btn small secondary" data-delete-leave="${l.id}">Xóa</button>
-      </div>`:"—"}
-    </td>
-  </tr>`).join("");
+
+  const rows = db.leaves.map((l,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td>${escapeHTML(studentName(l.studentId))}</td>
+      <td>${escapeHTML(l.date)}</td>
+      <td>${escapeHTML(l.reason)}</td>
+      <td>${escapeHTML(l.status)}</td>
+
+      <td>
+        ${isTeacher()?`
+          <div class="actions">
+            <button class="btn small success"
+                    data-leave="${l.id}|Đã duyệt">
+              Duyệt
+            </button>
+
+            <button class="btn small danger"
+                    data-leave="${l.id}|Từ chối">
+              Từ chối
+            </button>
+
+            <button class="btn small secondary"
+                    data-delete-leave="${l.id}">
+              Xóa
+            </button>
+          </div>
+        `:"—"}
+      </td>
+    </tr>
+  `).join("");
 
   return `
   ${isTeacher()?`
-  <div class="panel"><h3>Tạo giấy xin phép</h3>
-  ${db.students.length?`
-  <form id="leaveForm" class="form-grid">
-    <div class="field"><label>Học sinh</label><select name="studentId">${db.students.map(s=>`<option value="${s.id}">${escapeHTML(s.name)}</option>`).join("")}</select></div>
-    <div class="field"><label>Ngày nghỉ</label><input name="date" type="date" required></div>
-    <div class="field wide"><label>Lý do</label><textarea name="reason" required></textarea></div>
-    <div class="field wide"><button class="btn">Tạo đơn</button></div>
-  </form>`:`<p>Chưa có học sinh.</p>`}
-  </div>`:""}
+  <div class="panel">
+    <h3>Tạo giấy xin phép</h3>
 
-  <div class="panel"><h3>Danh sách đơn xin phép</h3>
-  <div class="table-wrap"><table>
-  <thead><tr><th>#</th><th>Học sinh</th><th>Ngày nghỉ</th><th>Lý do</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
-  <tbody>${rows||`<tr><td colspan="6" class="empty">Chưa có đơn</td></tr>`}</tbody>
-  </table></div></div>`;
+    ${db.students.length?`
+    <form id="leaveForm" class="form-grid">
+
+      <div class="field">
+        <label>Học sinh</label>
+        <select name="studentId">
+          ${db.students.map(s=>`
+            <option value="${s.id}">
+              ${escapeHTML(s.name)}
+            </option>
+          `).join("")}
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Ngày nghỉ</label>
+        <input name="date" type="date" required>
+      </div>
+
+      <div class="field wide">
+        <label>Lý do</label>
+        <textarea name="reason" required></textarea>
+      </div>
+
+      <div class="field wide">
+        <button class="btn">Tạo đơn</button>
+      </div>
+
+    </form>
+    `:`<p>Chưa có học sinh.</p>`}
+  </div>
+  `:""}
+
+  <div class="panel">
+    <h3>Danh sách đơn xin phép</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Học sinh</th>
+            <th>Ngày nghỉ</th>
+            <th>Lý do</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows || `
+            <tr>
+              <td colspan="6" class="empty">Chưa có đơn</td>
+            </tr>
+          `}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
 }
 
 // ========================================
-// 9. QUỸ LỚP
+// 10. QUỸ LỚP
 // ========================================
 
 function fundPage(){
-  const balance=db.funds.reduce((sum,f)=>sum+(f.type==="Thu"?Number(f.amount):-Number(f.amount)),0);
 
-  const rows=db.funds.map((f,i)=>`
-  <tr><td>${i+1}</td><td>${escapeHTML(f.date)}</td><td>${escapeHTML(f.description)}</td>
-  <td>${escapeHTML(f.type)}</td><td>${money(f.amount)}</td><td>${escapeHTML(f.note)}</td>
-  <td>${isTeacher()?`<button class="btn small danger" data-delete-fund="${f.id}">Xóa</button>`:"—"}</td></tr>`).join("");
+  const balance = db.funds.reduce((sum,f)=>
+    sum + (
+      f.type==="Thu"
+      ? Number(f.amount)
+      : -Number(f.amount)
+    ),0);
+
+  const rows = db.funds.map((f,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td>${escapeHTML(f.date)}</td>
+      <td>${escapeHTML(f.description)}</td>
+      <td>${escapeHTML(f.type)}</td>
+      <td>${money(f.amount)}</td>
+      <td>${escapeHTML(f.note)}</td>
+      <td>
+        ${isTeacher()?`
+          <button class="btn small danger"
+                  data-delete-fund="${f.id}">
+            Xóa
+          </button>
+        `:"—"}
+      </td>
+    </tr>
+  `).join("");
 
   return `
-  <div class="stat"><div class="stat-label">Số dư quỹ lớp</div><div class="stat-value">${money(balance)}</div></div>
-  ${isTeacher()?`
-  <div class="panel"><h3>Thêm giao dịch</h3>
-  <form id="fundForm" class="form-grid">
-    <div class="field"><label>Loại</label><select name="type"><option>Thu</option><option>Chi</option></select></div>
-    <div class="field"><label>Số tiền</label><input name="amount" type="number" min="1" required></div>
-    <div class="field"><label>Ngày</label><input name="date" type="date" value="${new Date().toISOString().slice(0,10)}" required></div>
-    <div class="field"><label>Nội dung</label><input name="description" required></div>
-    <div class="field wide"><label>Ghi chú</label><input name="note"></div>
-    <div class="field wide"><button class="btn">Lưu giao dịch</button></div>
-  </form></div>`:""}
+  <div class="stat">
+    <div class="stat-label">Số dư quỹ lớp</div>
+    <div class="stat-value">${money(balance)}</div>
+  </div>
 
-  <div class="panel"><h3>Lịch sử giao dịch</h3><div class="table-wrap"><table>
-  <thead><tr><th>#</th><th>Ngày</th><th>Nội dung</th><th>Loại</th><th>Số tiền</th><th>Ghi chú</th><th>Thao tác</th></tr></thead>
-  <tbody>${rows||`<tr><td colspan="7" class="empty">Chưa có giao dịch</td></tr>`}</tbody>
-  </table></div></div>`;
+  ${isTeacher()?`
+  <div class="panel">
+    <h3>Thêm giao dịch</h3>
+
+    <form id="fundForm" class="form-grid">
+
+      <div class="field">
+        <label>Loại</label>
+        <select name="type">
+          <option>Thu</option>
+          <option>Chi</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Số tiền</label>
+        <input name="amount" type="number"
+               min="1" required>
+      </div>
+
+      <div class="field">
+        <label>Ngày</label>
+        <input name="date" type="date"
+               value="${new Date().toISOString().slice(0,10)}"
+               required>
+      </div>
+
+      <div class="field">
+        <label>Nội dung</label>
+        <input name="description" required>
+      </div>
+
+      <div class="field wide">
+        <label>Ghi chú</label>
+        <input name="note">
+      </div>
+
+      <div class="field wide">
+        <button class="btn">Lưu giao dịch</button>
+      </div>
+
+    </form>
+  </div>
+  `:""}
+
+  <div class="panel">
+    <h3>Lịch sử giao dịch</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Ngày</th>
+            <th>Nội dung</th>
+            <th>Loại</th>
+            <th>Số tiền</th>
+            <th>Ghi chú</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows || `
+            <tr>
+              <td colspan="7" class="empty">
+                Chưa có giao dịch
+              </td>
+            </tr>
+          `}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
 }
 
 // ========================================
-// 10. HẠNH KIỂM
+// 11. HẠNH KIỂM
 // ========================================
 
 function conductPage(){
-  const rows=db.conduct.map((c,i)=>`
-  <tr><td>${i+1}</td><td>${escapeHTML(studentName(c.studentId))}</td>
-  <td>${escapeHTML(c.term)}</td><td>${escapeHTML(c.rating)}</td>
-  <td>${escapeHTML(c.note)}</td>
-  <td>${isTeacher()?`<button class="btn small danger" data-delete-conduct="${c.id}">Xóa</button>`:"—"}</td></tr>`).join("");
+
+  const rows = db.conduct.map((c,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td>${escapeHTML(studentName(c.studentId))}</td>
+      <td>${escapeHTML(c.term)}</td>
+      <td>${escapeHTML(c.rating)}</td>
+      <td>${escapeHTML(c.note)}</td>
+      <td>
+        ${isTeacher()?`
+          <button class="btn small danger"
+                  data-delete-conduct="${c.id}">
+            Xóa
+          </button>
+        `:"—"}
+      </td>
+    </tr>
+  `).join("");
 
   return `
   ${isTeacher()?`
-  <div class="panel"><h3>Xếp loại hạnh kiểm</h3>
-  ${db.students.length?`
-  <form id="conductForm" class="form-grid">
-    <div class="field"><label>Học sinh</label><select name="studentId">${db.students.map(s=>`<option value="${s.id}">${escapeHTML(s.name)}</option>`).join("")}</select></div>
-    <div class="field"><label>Học kỳ</label><select name="term"><option>Học kỳ I</option><option>Học kỳ II</option><option>Cả năm</option></select></div>
-    <div class="field"><label>Xếp loại</label><select name="rating"><option>Tốt</option><option>Khá</option><option>Đạt</option><option>Chưa đạt</option></select></div>
-    <div class="field"><label>Nhận xét</label><input name="note"></div>
-    <div class="field wide"><button class="btn">Lưu xếp loại</button></div>
-  </form>`:`<p>Chưa có học sinh.</p>`}
-  </div>`:""}
+  <div class="panel">
+    <h3>Xếp loại hạnh kiểm</h3>
 
-  <div class="panel"><h3>Danh sách hạnh kiểm</h3><div class="table-wrap"><table>
-  <thead><tr><th>#</th><th>Học sinh</th><th>Học kỳ</th><th>Xếp loại</th><th>Nhận xét</th><th>Thao tác</th></tr></thead>
-  <tbody>${rows||`<tr><td colspan="6" class="empty">Chưa có dữ liệu</td></tr>`}</tbody>
-  </table></div></div>`;
+    ${db.students.length?`
+    <form id="conductForm" class="form-grid">
+
+      <div class="field">
+        <label>Học sinh</label>
+        <select name="studentId">
+          ${db.students.map(s=>`
+            <option value="${s.id}">
+              ${escapeHTML(s.name)}
+            </option>
+          `).join("")}
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Học kỳ</label>
+        <select name="term">
+          <option>Học kỳ I</option>
+          <option>Học kỳ II</option>
+          <option>Cả năm</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Xếp loại</label>
+        <select name="rating">
+          <option>Tốt</option>
+          <option>Khá</option>
+          <option>Đạt</option>
+          <option>Chưa đạt</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Nhận xét</label>
+        <input name="note">
+      </div>
+
+      <div class="field wide">
+        <button class="btn">Lưu xếp loại</button>
+      </div>
+
+    </form>
+    `:`<p>Chưa có học sinh.</p>`}
+  </div>
+  `:""}
+
+  <div class="panel">
+    <h3>Danh sách hạnh kiểm</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Học sinh</th>
+            <th>Học kỳ</th>
+            <th>Xếp loại</th>
+            <th>Nhận xét</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows || `
+            <tr>
+              <td colspan="6" class="empty">
+                Chưa có dữ liệu
+              </td>
+            </tr>
+          `}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
 }
 
 // ========================================
-// 11. QUẢN TRỊ ADMIN
+// 12. THI ĐUA 4 TỔ - 32 TUẦN
+// ========================================
+
+function getGroupStudents(group){
+  return db.students.filter(s=>
+    Number(s.group || 1) === Number(group)
+  );
+}
+
+function getWeeklyRecord(studentId,week){
+  return db.weeklyRecords.find(r=>
+    r.studentId===studentId &&
+    Number(r.week)===Number(week)
+  );
+}
+
+// Xếp loại theo điểm thi đua.
+function classifyScore(score){
+
+  score = Number(score);
+
+  if(score>=9) return "Tốt";
+  if(score>=7) return "Khá";
+  if(score>=5) return "Đạt";
+
+  return "Chưa đạt";
+}
+
+function classificationClass(score){
+
+  score = Number(score);
+
+  if(score>=9) return "score-good";
+  if(score>=7) return "score-fair";
+  if(score>=5) return "score-pass";
+
+  return "score-low";
+}
+
+// Tính điểm trung bình của các tuần đã nhập.
+function getAverageScore(studentId){
+
+  const records = db.weeklyRecords.filter(r=>
+    r.studentId===studentId &&
+    r.score!=="" &&
+    r.score!==null &&
+    r.score!==undefined
+  );
+
+  if(records.length===0) return null;
+
+  const total = records.reduce(
+    (sum,r)=>sum+Number(r.score),0
+  );
+
+  return total/records.length;
+}
+
+// Tính số tuần đã nhập điểm.
+function getRecordedWeeks(studentId){
+
+  return db.weeklyRecords.filter(r=>
+    r.studentId===studentId &&
+    r.score!=="" &&
+    r.score!==null &&
+    r.score!==undefined
+  ).length;
+}
+
+function groupsPage(){
+
+  if(!isAdmin() && !isTeacher() && !isGroupLeader()){
+    return `
+      <div class="panel">
+        <h3>🏆 Thi đua 4 tổ</h3>
+        <p>
+          Tài khoản của bạn chưa được phân quyền Tổ trưởng.
+          Hãy liên hệ ADMIN hoặc GVCN.
+        </p>
+      </div>
+    `;
+  }
+
+  const defaultGroup = leaderGroup() || 1;
+
+  const groupOptions = [1,2,3,4].map(g=>`
+    <option value="${g}"
+      ${g===defaultGroup?"selected":""}>
+      Tổ ${g}
+    </option>
+  `).join("");
+
+  return `
+  <div class="panel">
+    <h3>🏆 Hệ thống thi đua 4 tổ</h3>
+
+    <p>
+      Theo dõi điểm thi đua, số lần phát biểu,
+      số lần nói chuyện và các tiêu chí bổ sung
+      trong 32 tuần học.
+    </p>
+
+    <div class="form-grid">
+
+      <div class="field">
+        <label>Chọn tổ</label>
+
+        <select id="selectedGroup"
+          ${isAdmin()||isTeacher()?"":"disabled"}>
+          ${groupOptions}
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Chọn tuần</label>
+
+        <select id="selectedWeek">
+          ${Array.from({length:32},(_,i)=>i+1).map(w=>`
+            <option value="${w}">
+              Tuần ${w}
+            </option>
+          `).join("")}
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="groupDataArea"></div>
+  `;
+}
+
+function renderGroupData(){
+
+  const group = Number(
+    document.getElementById("selectedGroup")?.value ||
+    leaderGroup() || 1
+  );
+
+  const week = Number(
+    document.getElementById("selectedWeek")?.value || 1
+  );
+
+  if(!requireGroupManager(group)) return;
+
+  const students = getGroupStudents(group);
+  const columns = db.groupColumns[group] || [];
+
+  const canEdit = canManageGroup(group);
+
+  const rows = students.map((student,index)=>{
+
+    const record = getWeeklyRecord(student.id,week) || {
+      score:"",
+      speeches:0,
+      talking:0,
+      custom:{}
+    };
+
+    const customCells = columns.map(col=>`
+      <td>
+        ${canEdit?`
+          <input
+            type="text"
+            data-custom="${escapeHTML(col.id)}"
+            data-student="${escapeHTML(student.id)}"
+            value="${escapeHTML(record.custom?.[col.id] ?? "")}"
+          >
+        `:escapeHTML(record.custom?.[col.id] ?? "")}
+      </td>
+    `).join("");
+
+    const classification =
+      record.score==="" ? "Chưa xếp loại" :
+      classifyScore(record.score);
+
+    return `
+    <tr>
+      <td>${index+1}</td>
+
+      <td>${escapeHTML(student.name)}</td>
+
+      <td>
+        ${canEdit?`
+          <input
+            type="number"
+            min="0"
+            max="10"
+            step="0.1"
+            data-score="${escapeHTML(student.id)}"
+            value="${escapeHTML(record.score ?? "")}"
+          >
+        `:escapeHTML(record.score ?? "")}
+      </td>
+
+      <td>
+        ${canEdit?`
+          <input
+            type="number"
+            min="0"
+            step="1"
+            data-speeches="${escapeHTML(student.id)}"
+            value="${Number(record.speeches || 0)}"
+          >
+        `:Number(record.speeches || 0)}
+      </td>
+
+      <td>
+        ${canEdit?`
+          <input
+            type="number"
+            min="0"
+            step="1"
+            data-talking="${escapeHTML(student.id)}"
+            value="${Number(record.talking || 0)}"
+          >
+        `:Number(record.talking || 0)}
+      </td>
+
+      <td class="${record.score===""?"":classificationClass(record.score)}">
+        ${classification}
+      </td>
+
+      ${customCells}
+    </tr>
+    `;
+  }).join("");
+
+  const customHeaders = columns.map(col=>`
+    <th>${escapeHTML(col.name)}</th>
+  `).join("");
+
+  const averageRows = students.map((student,index)=>{
+
+    const avg = getAverageScore(student.id);
+    const weeks = getRecordedWeeks(student.id);
+
+    return `
+    <tr>
+      <td>${index+1}</td>
+      <td>${escapeHTML(student.name)}</td>
+      <td>${avg===null?"Chưa có":avg.toFixed(2)}</td>
+      <td>${weeks}/32</td>
+      <td class="${avg===null?"":classificationClass(avg)}">
+        ${avg===null?"—":classifyScore(avg)}
+      </td>
+    </tr>
+    `;
+  }).join("");
+
+  const totalRecords = db.weeklyRecords.filter(r=>
+    Number(r.group)===group &&
+    Number(r.week)===week
+  ).length;
+
+  document.getElementById("groupDataArea").innerHTML = `
+
+  <div class="panel">
+
+    <h3>📋 Tổ ${group} – Tuần ${week}</h3>
+
+    <p>
+      Sĩ số: <strong>${students.length}</strong> học sinh.
+      Đã có bản ghi: <strong>${totalRecords}</strong>.
+    </p>
+
+    ${canEdit?`
+      <div class="toolbar">
+        <button class="btn success" id="saveWeeklyData">
+          💾 Lưu điểm thi đua
+        </button>
+
+        <button class="btn secondary" id="addGroupColumn">
+          + Thêm cột mới
+        </button>
+      </div>
+    `:""}
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Họ và tên</th>
+            <th>Điểm thi đua</th>
+            <th>Số lần phát biểu</th>
+            <th>Số lần nói chuyện</th>
+            <th>Xếp loại</th>
+            ${customHeaders}
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows || `
+            <tr>
+              <td colspan="${6+columns.length}"
+                  class="empty">
+                Tổ này chưa có học sinh.
+                Hãy phân tổ trong mục Quản lý học sinh.
+              </td>
+            </tr>
+          `}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+
+    <h3>📊 Tổng kết điểm trung bình</h3>
+
+    <p>
+      Điểm trung bình được tính từ những tuần đã nhập điểm.
+      Các tuần chưa nhập không bị tính là 0.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Học sinh</th>
+            <th>Điểm trung bình</th>
+            <th>Số tuần đã nhập</th>
+            <th>Xếp loại</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${averageRows || `
+            <tr>
+              <td colspan="5" class="empty">
+                Chưa có học sinh.
+              </td>
+            </tr>
+          `}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  `;
+}
+
+// ========================================
+// 13. QUẢN TRỊ ADMIN
 // ========================================
 
 function adminPage(){
-  if(!isAdmin())return "<p>Bạn không có quyền truy cập.</p>";
 
-  const users=loadUsers();
+  if(!isAdmin()){
+    return "<p>Bạn không có quyền truy cập.</p>";
+  }
 
-  const rows=users.map((u,i)=>{
-    const admin=ADMIN_EMAILS.includes(u.email);
-    const teacher=db.teachers.includes(u.email);
+  const users = loadUsers();
+
+  const rows = users.map((u,i)=>{
+
+    const admin = ADMIN_EMAILS.includes(u.email);
+    const teacher = db.teachers.includes(u.email);
+
+    let leaderOf = null;
+
+    for(let g=1;g<=4;g++){
+      if(db.groupLeaders[g]===u.email){
+        leaderOf = g;
+      }
+    }
+
+    const role = admin
+      ? "ADMIN"
+      : teacher
+        ? "GVCN"
+        : leaderOf
+          ? "TỔ TRƯỞNG TỔ "+leaderOf
+          : "USER";
 
     return `
     <tr>
       <td>${i+1}</td>
       <td>${escapeHTML(u.name)}</td>
       <td>${escapeHTML(u.email)}</td>
-      <td><span class="badge ${admin?"admin":teacher?"teacher":"user"}">${admin?"ADMIN":teacher?"GVCN":"USER"}</span></td>
+      <td><strong>${role}</strong></td>
+
       <td>
-        ${!admin?`
-        <div class="actions">
-          ${teacher?
-            `<button class="btn small danger" data-revoke="${escapeHTML(u.email)}">Thu hồi GVCN</button>`:
-            `<button class="btn small success" data-grant="${escapeHTML(u.email)}">Cấp quyền GVCN</button>`
-          }
-        </div>`:"Tài khoản ADMIN cố định"}
+        ${admin
+          ? "Tài khoản ADMIN cố định"
+          : `
+          <div class="actions">
+
+            ${
+              teacher
+              ? `
+                <button class="btn small danger"
+                        data-revoke="${escapeHTML(u.email)}">
+                  Thu hồi GVCN
+                </button>
+              `
+              : `
+                <button class="btn small success"
+                        data-grant="${escapeHTML(u.email)}">
+                  Cấp GVCN
+                </button>
+              `
+            }
+
+            <select id="leaderGroup_${i}"
+                    style="width:90px">
+              <option value="1">Tổ 1</option>
+              <option value="2">Tổ 2</option>
+              <option value="3">Tổ 3</option>
+              <option value="4">Tổ 4</option>
+            </select>
+
+            <button class="btn small"
+                    data-assign-leader="${escapeHTML(u.email)}"
+                    data-user-index="${i}">
+              Phân tổ trưởng
+            </button>
+
+            ${
+              leaderOf
+              ? `
+                <button class="btn small danger"
+                        data-remove-leader="${leaderOf}">
+                  Xóa quyền tổ trưởng
+                </button>
+              `
+              : ""
+            }
+
+          </div>
+        `}
       </td>
-    </tr>`;
+    </tr>
+    `;
+  }).join("");
+
+  const leaderRows = [1,2,3,4].map(g=>{
+
+    const email = db.groupLeaders[g];
+    const user = users.find(u=>u.email===email);
+
+    return `
+      <tr>
+        <td>Tổ ${g}</td>
+        <td>${user?escapeHTML(user.name):"Chưa phân công"}</td>
+        <td>${email?escapeHTML(email):"—"}</td>
+      </tr>
+    `;
   }).join("");
 
   return `
+
   <div class="panel">
     <h3>⚙️ Quản trị tài khoản</h3>
-    <p>Chỉ ADMIN mới có thể cấp hoặc thu hồi quyền GVCN.</p>
+
+    <p>
+      ADMIN có thể cấp/thu hồi quyền GVCN,
+      phân công và xóa quyền Tổ trưởng.
+    </p>
+
     <div class="table-wrap">
       <table>
-        <thead><tr><th>#</th><th>Họ tên</th><th>Email</th><th>Vai trò</th><th>Thao tác</th></tr></thead>
-        <tbody>${rows||`<tr><td colspan="5" class="empty">Chưa có tài khoản đăng ký</td></tr>`}</tbody>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Họ tên</th>
+            <th>Email</th>
+            <th>Vai trò</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows || `
+            <tr>
+              <td colspan="5" class="empty">
+                Chưa có tài khoản.
+              </td>
+            </tr>
+          `}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>👥 Danh sách 4 tổ trưởng</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tổ</th>
+            <th>Họ tên tổ trưởng</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+
+        <tbody>${leaderRows}</tbody>
       </table>
     </div>
   </div>
 
   <div class="panel">
     <h3>Danh sách ADMIN cố định</h3>
-    ${ADMIN_EMAILS.map(email=>`<p>🔴 ${email}</p>`).join("")}
+    ${ADMIN_EMAILS.map(email=>`
+      <p>🔴 ${email}</p>
+    `).join("")}
   </div>
 
   <div class="panel">
     <h3>Quản lý dữ liệu</h3>
     <p>Xuất bản sao dữ liệu lớp học để lưu trữ.</p>
-    <button class="btn secondary" id="backupData">⬇ Sao lưu dữ liệu JSON</button>
-  </div>`;
+
+    <button class="btn secondary" id="backupData">
+      ⬇ Sao lưu dữ liệu JSON
+    </button>
+  </div>
+  `;
 }
 
 // ========================================
-// 12. GẮN CÁC SỰ KIỆN
+// 14. GẮN SỰ KIỆN CÁC TRANG
 // ========================================
 
 function bindPageEvents(){
 
-  // Học sinh
-  const sf=document.getElementById("studentForm");
+  // --------------------------------------
+  // HỌC SINH
+  // --------------------------------------
+
+  const sf = document.getElementById("studentForm");
 
   if(sf){
-    sf.addEventListener("submit",e=>{
-      e.preventDefault();
-      if(!requireTeacher())return;
 
-      const f=new FormData(sf);
-      const item={
+    sf.onsubmit=e=>{
+
+      e.preventDefault();
+
+      if(!requireTeacher()) return;
+
+      const f = new FormData(sf);
+
+      const item = {
         code:f.get("code").trim(),
         name:f.get("name").trim(),
         gender:f.get("gender"),
         dob:f.get("dob"),
-        phone:f.get("phone").trim()
+        phone:f.get("phone").trim(),
+        group:Number(f.get("group") || 1)
       };
 
-      if(!item.code||!item.name)return;
+      if(!item.code || !item.name) return;
 
-      const duplicate=db.students.some(s=>
+      const duplicate = db.students.some(s=>
         s.code.toLowerCase()===item.code.toLowerCase() &&
         s.id!==editingStudentId
       );
 
-      if(duplicate)return alert("Mã học sinh đã tồn tại.");
-
-      if(editingStudentId){
-        const index=db.students.findIndex(s=>s.id===editingStudentId);
-        if(index>=0)db.students[index]={...db.students[index],...item};
-      }else{
-        db.students.push({id:uid(),...item});
+      if(duplicate){
+        return alert("Mã học sinh đã tồn tại.");
       }
 
-      editingStudentId=null;
-      saveData();render();
-    });
+      if(editingStudentId){
+
+        const index = db.students.findIndex(s=>
+          s.id===editingStudentId
+        );
+
+        if(index>=0){
+          db.students[index] = {
+            ...db.students[index],
+            ...item
+          };
+        }
+
+      }else{
+
+        db.students.push({
+          id:uid(),
+          ...item
+        });
+      }
+
+      editingStudentId = null;
+
+      saveData();
+      render();
+    };
 
     document.getElementById("cancelEdit").onclick=()=>{
-      editingStudentId=null;render();
+      editingStudentId = null;
+      render();
     };
   }
 
-  document.querySelectorAll("[data-edit-student]").forEach(btn=>{
-    btn.onclick=()=>{
-      if(!requireTeacher())return;
-      const s=db.students.find(x=>x.id===btn.dataset.editStudent);
-      if(!s)return;
-      editingStudentId=s.id;
-      render();
-      const form=document.getElementById("studentForm");
-      ["code","name","gender","dob","phone"].forEach(k=>{
-        form.elements[k].value=s[k]||"";
-      });
-    };
-  });
+  // Sửa học sinh
+  document.querySelectorAll("[data-edit-student]")
+    .forEach(btn=>{
 
-  document.querySelectorAll("[data-delete-student]").forEach(btn=>{
-    btn.onclick=()=>{
-      if(!requireTeacher()||!confirm("Xóa học sinh này?"))return;
-      db.students=db.students.filter(s=>s.id!==btn.dataset.deleteStudent);
-      saveData();render();
-    };
-  });
+      btn.onclick=()=>{
 
-  const search=document.getElementById("studentSearch");
-  if(search)search.oninput=()=>{
-    const q=search.value.toLowerCase();
-    document.querySelectorAll("#studentRows tr").forEach(row=>{
-      row.hidden=!row.textContent.toLowerCase().includes(q);
+        if(!requireTeacher()) return;
+
+        const s = db.students.find(x=>
+          x.id===btn.dataset.editStudent
+        );
+
+        if(!s) return;
+
+        editingStudentId = s.id;
+        render();
+
+        const form = document.getElementById("studentForm");
+
+        ["code","name","gender","dob","phone","group"]
+          .forEach(k=>{
+            if(form.elements[k]){
+              form.elements[k].value =
+                s[k] ?? (k==="group"?1:"");
+            }
+          });
+      };
     });
-  };
 
-  const file=document.getElementById("studentFile");
-  if(file)file.onchange=()=>{
-    if(!requireTeacher())return;
-    if(file.files[0])importStudents(file.files[0]);
-    file.value="";
-  };
+  // Xóa học sinh
+  document.querySelectorAll("[data-delete-student]")
+    .forEach(btn=>{
 
-  const template=document.getElementById("downloadTemplate");
-  if(template)template.onclick=()=>{
-    downloadCSV("Mau_danh_sach_hoc_sinh.csv",
-      "MaHS,HoTen,GioiTinh,NgaySinh,SDT\r\nHS001,Nguyen Van A,Nam,2012-01-01,0123456789\r\n");
-  };
+      btn.onclick=()=>{
 
-  ["exportStudents","exportStudents2"].forEach(id=>{
-    const btn=document.getElementById(id);
-    if(btn)btn.onclick=()=>{
-      if(requireTeacher())exportStudents();
-    };
-  });
+        if(!requireTeacher()) return;
 
-  // Điểm
-  const gf=document.getElementById("gradeForm");
-  if(gf)gf.onsubmit=e=>{
-    e.preventDefault();
-    if(!requireTeacher())return;
-    const f=new FormData(gf);
-    const score=Number(f.get("score"));
-    if(score<0||score>10)return alert("Điểm phải từ 0 đến 10.");
+        if(!confirm("Bạn có chắc muốn xóa học sinh này?")){
+          return;
+        }
 
-    db.grades.push({
-      id:uid(),studentId:f.get("studentId"),
-      subject:f.get("subject").trim(),type:f.get("type"),
-      score,date:f.get("date")
-    });
-    saveData();render();
-  };
+        const id = btn.dataset.deleteStudent;
 
-  document.querySelectorAll("[data-delete-grade]").forEach(btn=>{
-    btn.onclick=()=>{
-      if(!requireTeacher()||!confirm("Xóa điểm?"))return;
-      db.grades=db.grades.filter(g=>g.id!==btn.dataset.deleteGrade);
-      saveData();render();
-    };
-  });
+        db.students = db.students.filter(s=>s.id!==id);
 
-  // Giấy xin phép
-  const lf=document.getElementById("leaveForm");
-  if(lf)lf.onsubmit=e=>{
-    e.preventDefault();
-    if(!requireTeacher())return;
-    const f=new FormData(lf);
-    db.leaves.push({
-      id:uid(),studentId:f.get("studentId"),
-      date:f.get("date"),reason:f.get("reason").trim(),
-      status:"Chờ duyệt"
-    });
-    saveData();render();
-  };
-
-  document.querySelectorAll("[data-leave]").forEach(btn=>{
-    btn.onclick=()=>{
-      if(!requireTeacher())return;
-      const [id,status]=btn.dataset.leave.split("|");
-      const l=db.leaves.find(x=>x.id===id);
-      if(l)l.status=status;
-      saveData();render();
-    };
-  });
-
-  document.querySelectorAll("[data-delete-leave]").forEach(btn=>{
-    btn.onclick=()=>{
-      if(!requireTeacher()||!confirm("Xóa đơn?"))return;
-      db.leaves=db.leaves.filter(l=>l.id!==btn.dataset.deleteLeave);
-      saveData();render();
-    };
-  });
-
-  // Quỹ lớp
-  const ff=document.getElementById("fundForm");
-  if(ff)ff.onsubmit=e=>{
-    e.preventDefault();
-    if(!requireTeacher())return;
-    const f=new FormData(ff);
-    const amount=Number(f.get("amount"));
-    if(amount<=0)return alert("Số tiền không hợp lệ.");
-
-    db.funds.push({
-      id:uid(),type:f.get("type"),amount,
-      date:f.get("date"),description:f.get("description").trim(),
-      note:f.get("note").trim()
-    });
-    saveData();render();
-  };
-
-  document.querySelectorAll("[data-delete-fund]").forEach(btn=>{
-    btn.onclick=()=>{
-      if(!requireTeacher()||!confirm("Xóa giao dịch?"))return;
-      db.funds=db.funds.filter(f=>f.id!==btn.dataset.deleteFund);
-      saveData();render();
-    };
-  });
-
-  // Hạnh kiểm
-  const cf=document.getElementById("conductForm");
-  if(cf)cf.onsubmit=e=>{
-    e.preventDefault();
-    if(!requireTeacher())return;
-    const f=new FormData(cf);
-    db.conduct.push({
-      id:uid(),studentId:f.get("studentId"),
-      term:f.get("term"),rating:f.get("rating"),
-      note:f.get("note").trim()
-    });
-    saveData();render();
-  };
-
-  document.querySelectorAll("[data-delete-conduct]").forEach(btn=>{
-    btn.onclick=()=>{
-      if(!requireTeacher()||!confirm("Xóa xếp loại?"))return;
-      db.conduct=db.conduct.filter(c=>c.id!==btn.dataset.deleteConduct);
-      saveData();render();
-    };
-  });
-
-  // ADMIN cấp quyền GVCN
-  document.querySelectorAll("[data-grant]").forEach(btn=>{
-    btn.onclick=()=>{
-      if(!requireAdmin())return;
-      const email=btn.dataset.grant;
-
-      if(!loadUsers().some(u=>u.email===email))
-        return alert("Tài khoản không tồn tại.");
-
-      if(!db.teachers.includes(email)){
-        db.teachers.push(email);
         saveData();
+        render();
+      };
+    });
+
+  // Tìm học sinh
+  const search = document.getElementById("studentSearch");
+
+  if(search){
+
+    search.oninput=()=>{
+
+      const q = search.value.toLowerCase();
+
+      document.querySelectorAll("#studentRows tr")
+        .forEach(row=>{
+          row.hidden =
+            !row.textContent.toLowerCase().includes(q);
+        });
+    };
+  }
+
+  // Nhập CSV
+  const file = document.getElementById("studentFile");
+
+  if(file){
+
+    file.onchange=()=>{
+
+      if(!requireTeacher()) return;
+
+      if(file.files[0]){
+        importStudents(file.files[0]);
       }
 
+      file.value = "";
+    };
+  }
+
+  // Tải mẫu CSV
+  const template = document.getElementById("downloadTemplate");
+
+  if(template){
+
+    template.onclick=()=>{
+
+      downloadCSV(
+        "Mau_danh_sach_hoc_sinh.csv",
+        "MaHS,HoTen,GioiTinh,NgaySinh,SDT\r\n"+
+        "HS001,Nguyen Van A,Nam,2012-01-01,0123456789\r\n"
+      );
+    };
+  }
+
+  // Xuất CSV
+  const exportButton = document.getElementById("exportStudents");
+
+  if(exportButton){
+    exportButton.onclick=()=>{
+      if(requireTeacher()) exportStudents();
+    };
+  }
+
+  // --------------------------------------
+  // ĐIỂM
+  // --------------------------------------
+
+  const gf = document.getElementById("gradeForm");
+
+  if(gf){
+
+    gf.onsubmit=e=>{
+
+      e.preventDefault();
+
+      if(!requireTeacher()) return;
+
+      const f = new FormData(gf);
+      const score = Number(f.get("score"));
+
+      if(score<0 || score>10){
+        return alert("Điểm phải từ 0 đến 10.");
+      }
+
+      db.grades.push({
+        id:uid(),
+        studentId:f.get("studentId"),
+        subject:f.get("subject").trim(),
+        type:f.get("type"),
+        score,
+        date:f.get("date")
+      });
+
+      saveData();
       render();
-      alert("Đã cấp quyền GVCN cho "+email);
     };
-  });
+  }
 
-  // ADMIN thu hồi quyền GVCN
-  document.querySelectorAll("[data-revoke]").forEach(btn=>{
-    btn.onclick=()=>{
-      if(!requireAdmin())return;
-      const email=btn.dataset.revoke;
+  document.querySelectorAll("[data-delete-grade]")
+    .forEach(btn=>{
 
-      if(!confirm("Thu hồi quyền GVCN của "+email+"?"))return;
+      btn.onclick=()=>{
 
-      db.teachers=db.teachers.filter(x=>x!==email);
-      saveData();render();
+        if(!requireTeacher()) return;
+
+        if(!confirm("Xóa điểm này?")) return;
+
+        db.grades = db.grades.filter(g=>
+          g.id!==btn.dataset.deleteGrade
+        );
+
+        saveData();
+        render();
+      };
+    });
+
+  // --------------------------------------
+  // GIẤY XIN PHÉP
+  // --------------------------------------
+
+  const lf = document.getElementById("leaveForm");
+
+  if(lf){
+
+    lf.onsubmit=e=>{
+
+      e.preventDefault();
+
+      if(!requireTeacher()) return;
+
+      const f = new FormData(lf);
+
+      db.leaves.push({
+        id:uid(),
+        studentId:f.get("studentId"),
+        date:f.get("date"),
+        reason:f.get("reason").trim(),
+        status:"Chờ duyệt"
+      });
+
+      saveData();
+      render();
     };
-  });
+  }
 
-  // Sao lưu dữ liệu
-  const backup=document.getElementById("backupData");
-  if(backup)backup.onclick=()=>{
-    if(!requireAdmin())return;
-    const data={
-      students:db.students,
-      grades:db.grades,
-      leaves:db.leaves,
-      funds:db.funds,
-      conduct:db.conduct,
-      teachers:db.teachers
+  document.querySelectorAll("[data-leave]")
+    .forEach(btn=>{
+
+      btn.onclick=()=>{
+
+        if(!requireTeacher()) return;
+
+        const [id,status] = btn.dataset.leave.split("|");
+
+        const leave = db.leaves.find(l=>l.id===id);
+
+        if(leave){
+          leave.status = status;
+        }
+
+        saveData();
+        render();
+      };
+    });
+
+  document.querySelectorAll("[data-delete-leave]")
+    .forEach(btn=>{
+
+      btn.onclick=()=>{
+
+        if(!requireTeacher()) return;
+
+        if(!confirm("Xóa đơn xin phép này?")) return;
+
+        db.leaves = db.leaves.filter(l=>
+          l.id!==btn.dataset.deleteLeave
+        );
+
+        saveData();
+        render();
+      };
+    });
+
+  // --------------------------------------
+  // QUỸ LỚP
+  // --------------------------------------
+
+  const ff = document.getElementById("fundForm");
+
+  if(ff){
+
+    ff.onsubmit=e=>{
+
+      e.preventDefault();
+
+      if(!requireTeacher()) return;
+
+      const f = new FormData(ff);
+      const amount = Number(f.get("amount"));
+
+      if(amount<=0){
+        return alert("Số tiền không hợp lệ.");
+      }
+
+      db.funds.push({
+        id:uid(),
+        type:f.get("type"),
+        amount,
+        date:f.get("date"),
+        description:f.get("description").trim(),
+        note:f.get("note").trim()
+      });
+
+      saveData();
+      render();
     };
-    const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement("a");
-    a.href=url;
-    a.download="ClassMaster_Backup.json";
-    a.click();
-    URL.revokeObjectURL(url);
-  };
+  }
+
+  document.querySelectorAll("[data-delete-fund]")
+    .forEach(btn=>{
+
+      btn.onclick=()=>{
+
+        if(!requireTeacher()) return;
+
+        if(!confirm("Xóa giao dịch này?")) return;
+
+        db.funds = db.funds.filter(f=>
+          f.id!==btn.dataset.deleteFund
+        );
+
+        saveData();
+        render();
+      };
+    });
+
+  // --------------------------------------
+  // HẠNH KIỂM
+  // --------------------------------------
+
+  const cf = document.getElementById("conductForm");
+
+  if(cf){
+
+    cf.onsubmit=e=>{
+
+      e.preventDefault();
+
+      if(!requireTeacher()) return;
+
+      const f = new FormData(cf);
+
+      db.conduct.push({
+        id:uid(),
+        studentId:f.get("studentId"),
+        term:f.get("term"),
+        rating:f.get("rating"),
+        note:f.get("note").trim()
+      });
+
+      saveData();
+      render();
+    };
+  }
+
+  document.querySelectorAll("[data-delete-conduct]")
+    .forEach(btn=>{
+
+      btn.onclick=()=>{
+
+        if(!requireTeacher()) return;
+
+        if(!confirm("Xóa xếp loại này?")) return;
+
+        db.conduct = db.conduct.filter(c=>
+          c.id!==btn.dataset.deleteConduct
+        );
+
+        saveData();
+        render();
+      };
+    });
+
+  // --------------------------------------
+  // ADMIN CẤP QUYỀN GVCN
+  // --------------------------------------
+
+  document.querySelectorAll("[data-grant]")
+    .forEach(btn=>{
+
+      btn.onclick=()=>{
+
+        if(!requireAdmin()) return;
+
+        const email = btn.dataset.grant;
+
+        if(!loadUsers().some(u=>u.email===email)){
+          return alert("Tài khoản không tồn tại.");
+        }
+
+        if(!db.teachers.includes(email)){
+          db.teachers.push(email);
+        }
+
+        saveData();
+        render();
+
+        alert("Đã cấp quyền GVCN cho "+email);
+      };
+    });
+
+  // ADMIN THU HỒI QUYỀN GVCN
+  document.querySelectorAll("[data-revoke]")
+    .forEach(btn=>{
+
+      btn.onclick=()=>{
+
+        if(!requireAdmin()) return;
+
+        const email = btn.dataset.revoke;
+
+        if(!confirm("Thu hồi quyền GVCN của "+email+"?")){
+          return;
+        }
+
+        db.teachers = db.teachers.filter(x=>x!==email);
+
+        saveData();
+        render();
+      };
+    });
+
+  // --------------------------------------
+  // ADMIN PHÂN CÔNG TỔ TRƯỞNG
+  // --------------------------------------
+
+  document.querySelectorAll("[data-assign-leader]")
+    .forEach(btn=>{
+
+      btn.onclick=()=>{
+
+        if(!requireAdmin()) return;
+
+        const email = btn.dataset.assignLeader;
+        const index = btn.dataset.userIndex;
+
+        const select = document.getElementById(
+          "leaderGroup_"+index
+        );
+
+        const group = Number(select.value);
+
+        const users = loadUsers();
+
+        if(!users.some(u=>u.email===email)){
+          return alert("Tài khoản không tồn tại.");
+        }
+
+        const oldLeader = db.groupLeaders[group];
+
+        if(oldLeader && oldLeader!==email){
+
+          const ok = confirm(
+            "Tổ "+group+" đã có tổ trưởng là "+
+            oldLeader+". Bạn có muốn thay thế không?"
+          );
+
+          if(!ok) return;
+        }
+
+        // Mỗi tài khoản chỉ giữ một quyền tổ trưởng.
+        for(let g=1;g<=4;g++){
+
+          if(db.groupLeaders[g]===email){
+            delete db.groupLeaders[g];
+          }
+        }
+
+        db.groupLeaders[group] = email;
+
+        saveData();
+        render();
+
+        alert(
+          "Đã phân quyền Tổ trưởng tổ "+
+          group+" cho "+email
+        );
+      };
+    });
+
+  // --------------------------------------
+  // ADMIN XÓA QUYỀN TỔ TRƯỞNG
+  // --------------------------------------
+
+  document.querySelectorAll("[data-remove-leader]")
+    .forEach(btn=>{
+
+      btn.onclick=()=>{
+
+        if(!requireAdmin()) return;
+
+        const group = Number(btn.dataset.removeLeader);
+        const email = db.groupLeaders[group];
+
+        if(!email) return;
+
+        if(!confirm(
+          "Bạn có chắc muốn xóa quyền Tổ trưởng tổ "+
+          group+" của "+email+"?"
+        )){
+          return;
+        }
+
+        delete db.groupLeaders[group];
+
+        saveData();
+        render();
+
+        alert("Đã thu hồi quyền Tổ trưởng tổ "+group+".");
+      };
+    });
+
+  // --------------------------------------
+  // SAO LƯU DỮ LIỆU
+  // --------------------------------------
+
+  const backup = document.getElementById("backupData");
+
+  if(backup){
+
+    backup.onclick=()=>{
+
+      if(!requireAdmin()) return;
+
+      const data = {
+        students:db.students,
+        grades:db.grades,
+        leaves:db.leaves,
+        funds:db.funds,
+        conduct:db.conduct,
+        teachers:db.teachers,
+        groupLeaders:db.groupLeaders,
+        groupColumns:db.groupColumns,
+        weeklyRecords:db.weeklyRecords
+      };
+
+      const blob = new Blob(
+        [JSON.stringify(data,null,2)],
+        {type:"application/json"}
+      );
+
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+
+      a.href = url;
+      a.download = "ClassMaster_Backup.json";
+      a.click();
+
+      URL.revokeObjectURL(url);
+    };
+  }
 }
+
+// ========================================
+// 15. SỰ KIỆN BẢNG THI ĐUA
+// ========================================
+
+function bindGroupDataEvents(){
+
+  // Chuyển tổ
+  const groupSelect = document.getElementById("selectedGroup");
+
+  if(groupSelect){
+
+    groupSelect.onchange=()=>{
+      renderGroupData();
+      bindGroupDataEvents();
+    };
+  }
+
+  // Chuyển tuần
+  const weekSelect = document.getElementById("selectedWeek");
+
+  if(weekSelect){
+
+    weekSelect.onchange=()=>{
+      renderGroupData();
+      bindGroupDataEvents();
+    };
+  }
+
+  // LƯU ĐIỂM THI ĐUA
+  const saveButton = document.getElementById("saveWeeklyData");
+
+  if(saveButton){
+
+    saveButton.onclick=()=>{
+
+      const group = Number(
+        document.getElementById("selectedGroup").value
+      );
+
+      const week = Number(
+        document.getElementById("selectedWeek").value
+      );
+
+      if(!requireGroupManager(group)) return;
+
+      const students = getGroupStudents(group);
+      const columns = db.groupColumns[group] || [];
+
+      const pendingRecords = [];
+
+      // Kiểm tra toàn bộ dữ liệu trước khi lưu.
+      for(const student of students){
+
+        const scoreInput = document.querySelector(
+          `[data-score="${student.id}"]`
+        );
+
+        const speechesInput = document.querySelector(
+          `[data-speeches="${student.id}"]`
+        );
+
+        const talkingInput = document.querySelector(
+          `[data-talking="${student.id}"]`
+        );
+
+        const scoreText = scoreInput.value.trim();
+
+        const score = scoreText===""
+          ? ""
+          : Number(scoreText);
+
+        const speeches = Number(speechesInput.value || 0);
+        const talking = Number(talkingInput.value || 0);
+
+        if(score!=="" && (
+          !Number.isFinite(score) ||
+          score<0 ||
+          score>10
+        )){
+          return alert(
+            "Điểm của "+student.name+
+            " phải từ 0 đến 10."
+          );
+        }
+
+        if(
+          !Number.isInteger(speeches) ||
+          speeches<0 ||
+          !Number.isInteger(talking) ||
+          talking<0
+        ){
+          return alert(
+            "Số lần phát biểu và nói chuyện phải là số nguyên không âm."
+          );
+        }
+
+        const custom = {};
+
+        columns.forEach(col=>{
+
+          const input = document.querySelector(
+            `[data-custom="${col.id}"][data-student="${student.id}"]`
+          );
+
+          custom[col.id] = input ? input.value : "";
+        });
+
+        pendingRecords.push({
+          studentId:student.id,
+          group,
+          week,
+          score,
+          speeches,
+          talking,
+          custom
+        });
+      }
+
+      // Lưu hoặc cập nhật bản ghi.
+      pendingRecords.forEach(data=>{
+
+        let record = db.weeklyRecords.find(r=>
+          r.studentId===data.studentId &&
+          Number(r.week)===week
+        );
+
+        if(record){
+
+          Object.assign(record,data);
+
+        }else{
+
+          db.weeklyRecords.push({
+            id:uid(),
+            ...data
+          });
+        }
+      });
+
+      saveData();
+
+      alert(
+        "Đã lưu dữ liệu thi đua tuần "+
+        week+" của tổ "+group+"."
+      );
+
+      renderGroupData();
+      bindGroupDataEvents();
+    };
+  }
+
+  // THÊM CỘT MỚI
+  const addButton = document.getElementById("addGroupColumn");
+
+  if(addButton){
+
+    addButton.onclick=()=>{
+
+      const group = Number(
+        document.getElementById("selectedGroup").value
+      );
+
+      if(!requireGroupManager(group)) return;
+
+      const name = prompt(
+        "Nhập tên cột mới.\n"+
+        "Ví dụ: Trực nhật, Vệ sinh, Đồng phục..."
+      );
+
+      if(!name || !name.trim()) return;
+
+      if(!db.groupColumns[group]){
+        db.groupColumns[group] = [];
+      }
+
+      const duplicate = db.groupColumns[group].some(c=>
+        c.name.toLowerCase()===name.trim().toLowerCase()
+      );
+
+      if(duplicate){
+        return alert("Tên cột này đã tồn tại.");
+      }
+
+      db.groupColumns[group].push({
+        id:uid(),
+        name:name.trim()
+      });
+
+      saveData();
+
+      renderGroupData();
+      bindGroupDataEvents();
+
+      alert("Đã thêm cột mới cho tổ "+group+".");
+    };
+  }
+}
+
+// ========================================
+// 16. KHỞI TẠO
+// ========================================
+
+render;
+
 </script>
 </body>
 </html>
